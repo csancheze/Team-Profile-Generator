@@ -28,8 +28,8 @@ Run node index.js in the terminal, then fill the information required.
 
   
   
-![Team Profile Generator webpage working as expected](assets/images/screenshot1.png)
-![Team Profile Generator webpage working as expected](assets/images/screenshot2.png)
+![Team Profile Generator webpage working as expected](assets/screenshot1.png)
+![Team Profile Generator webpage working as expected](assets/screenshot2.png)
   
   ## License
   
@@ -52,6 +52,11 @@ More employee classes could be addded. Also a more compĺete employee structure 
   
   
 Open the link to watch the video of the test
+[Video](https://github.com/csancheze/Team-Profile-Generator/blob/main/assets/test.mkv)
+
+or in Google Drive
+[Video in Drive](https://drive.google.com/file/d/12w7ku90W-mOFZxuAQ3jc4DgEagYShfhG/view?usp=sharing)
+
 
   
   ## Questions
