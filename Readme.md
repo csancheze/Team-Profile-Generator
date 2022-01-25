@@ -50,7 +50,7 @@ More employee classes could be addded. Also a more compĺete employee structure 
   
   ## Tests
  
-See an example of the working html
+See an example of the working HTML
 [Webpage](https://csancheze.github.io/Team-profile-deploy/)
   
 Open to download the video of the test
