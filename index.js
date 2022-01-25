@@ -2,6 +2,8 @@ const inquirer = require("inquirer");
 const Manager = require("./lib/Manager")
 const Engineer = require("./lib/Engineer")
 const Intern = require("./lib/Intern")
+const fs = require('fs');
+const generateHtml = require('./src/generateHtml');
 
 const listEmployees = []
 
@@ -207,5 +209,49 @@ const addIntern = () => {
             employeeMenu();
         })
     }
+
+const renderTeam = () => {
+    let cards = ""
+    let employeeIcon = ""
+    let employeeExtra = ""
+    for (let employee of listEmployees) {
+        switch (employee.role) {
+            case "Manager":
+                employeeIcon = "&#128081";
+                employeeExtra = `<p class="card-text"> Office number: ${employee.officeNumber} <p>`
+                break;
+            case "Engineer":
+                employeeIcon = "&#128640";
+                employeeExtra = `<a href="https://www.github.com/${employee.github}" class="card-link" target="_blank" > Github username: ${employee.github}<a>`
+                break;
+            case "Intern":
+                employeeIcon = "&#127891";
+                employeeExtra = `<p class="card-text"> School: ${employee.school} <p>`
+                break;        }
+        let employeeCard = 
+    `       
+    <div class="card">
+        <div class="card-header" style="position: relative;">
+            <h2 class="card-title">${employee.name}</h2>
+            <h3>${employeeIcon} ${employee.role}</h3>
+            <div style="position: absolute; top: 0; right: 0">${employee.id}</div>
+        </div>
+        <div class="card-body">
+            <a href="mailto:${employee.email}" class="card-link"> Email: ${employee.email}</a>
+            ${employeeExtra}
+        </div>
+    </div>
+    `
+      cards += employeeCard
+      console.log(cards)
+      writeHtml(cards)
+    }
+    
+}
+
+const writeHtml = (cards) => {
+    fs.writeFileSync('./dist/index.html', generateHtml(cards))
+    console.log('\x1b[32m%s\x1b[0m', "Your Team Profile is finished!")
+}
 
 startApp();
