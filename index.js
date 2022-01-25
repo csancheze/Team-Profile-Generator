@@ -62,7 +62,6 @@ inquirer
     .then((answers) => {
         const manager = new Manager(answers.name,answers.id,answers.email,answers.officeNo)
         listEmployees.push(manager)
-        console.log(listEmployees)
         employeeMenu();
     })
 }
@@ -147,7 +146,6 @@ const addEngineer = () => {
         .then((answers) => {
             const engineer = new Engineer(answers.name,answers.id,answers.email,answers.github)
             listEmployees.push(engineer)
-            console.log(listEmployees)
             employeeMenu();
         })
     }
@@ -205,7 +203,6 @@ const addIntern = () => {
         .then((answers) => {
             const intern = new Intern(answers.name,answers.id,answers.email,answers.school)
             listEmployees.push(intern)
-            console.log(listEmployees)
             employeeMenu();
         })
     }
@@ -222,7 +219,7 @@ const renderTeam = () => {
                 break;
             case "Engineer":
                 employeeIcon = "&#128640";
-                employeeExtra = `<a href="https://www.github.com/${employee.github}" class="card-link" target="_blank" > Github username: ${employee.github}<a>`
+                employeeExtra = `<p class="card-text"> Github username:<a href="https://www.github.com/${employee.github}" class="card-link" target="_blank" > ${employee.github}</a></p>`
                 break;
             case "Intern":
                 employeeIcon = "&#127891";
@@ -230,24 +227,24 @@ const renderTeam = () => {
                 break;        }
         let employeeCard = 
     `       
-    <div class="card">
-        <div class="card-header" style="position: relative;">
-            <h2 class="card-title">${employee.name}</h2>
-            <h3>${employeeIcon} ${employee.role}</h3>
-            <div style="position: absolute; top: 0; right: 0">${employee.id}</div>
-        </div>
-        <div class="card-body">
-            <a href="mailto:${employee.email}" class="card-link"> Email: ${employee.email}</a>
-            ${employeeExtra}
-        </div>
+    <div class="card col-12 col-md-5 col-lg-3 p-0 m-4">
+    <div class="card-header" style="position: relative;">
+        <h2 class="card-title pt-2">${employee.name}</h2>
+        <h4 class="h4">${employeeIcon} ${employee.role}</h3>
+        <div style="position: absolute; top: 0; right: 0; padding: 2px;"><strong>${employee.id}</strong></div>
+    </div>
+    <div class="card-body bg-dark text-white">
+        <p class="card-text"> Email: <a href="mailto:${employee.email}" class="card-link"> ${employee.email}</a><p>
+        ${employeeExtra}
+    </div>
     </div>
     `
       cards += employeeCard
-      console.log(cards)
-      writeHtml(cards)
     }
-    
+    writeHtml(cards)
 }
+    
+
 
 const writeHtml = (cards) => {
     fs.writeFileSync('./dist/index.html', generateHtml(cards))
